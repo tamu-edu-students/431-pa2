@@ -38,7 +38,9 @@
     <tfoot>
       <tr>
         <td colspan="3" style="text-align: left;">
-          <%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]) %>
+          <div class="links">
+            <%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]) %>
+          </div>
         </td>
       </tr>
     </tfoot>

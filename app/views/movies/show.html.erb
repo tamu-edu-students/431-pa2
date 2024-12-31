@@ -1,11 +1,32 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @movie %>
-
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>
-
-
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
+<div id="movie-details" style="display: flex; justify-content: center;">
+  <table>
+    <thead>
+      <tr>
+        <th>Movie Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= render @movie %></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="links">
+            <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
+            <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>
+          </div>
+          
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>
+          <%= button_to "Destroy this movie", @movie, method: :delete %>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
