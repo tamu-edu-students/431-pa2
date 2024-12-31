@@ -2,6 +2,10 @@ a {
     color: black;
 }
 
+h1 {
+    text-align: center;
+}
+
 .asc {
     color: blue;
 }
