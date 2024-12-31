@@ -29,7 +29,7 @@
     <tbody>
       <% @movies.each do |movie| %>
         <tr>
-          <td><%= link_to movie.title, movie %></td>
+          <td><%= link_to movie.title, movie_path(movie, sort: params[:sort], direction: params[:direction]) %></td>
           <td><%= movie.rating %></td>
           <td><%= movie.release_date.strftime('%Y-%m-%d') %></td>
         </tr>
