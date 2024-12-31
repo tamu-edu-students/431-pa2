@@ -25,9 +25,13 @@ more_movies = [
   {:title => 'The Godfather', :rating => 'R',
     :release_date => '24-Mar-1972'},
   {:title => 'Old Boy', :rating => 'R',
-    :release_date => '21-Nov-2003'},
+    :release_date => '21-Nov-2003'}
 ]
 
-more_movies.each do |movie|
-  Movie.create!(movie)
+more_movies.each do |movie_data|
+  Movie.find_or_create_by!(title: movie_data[:title]) do |movie|
+    movie.rating = movie_data[:rating]
+    movie.description = movie_data[:description]
+    movie.release_date = movie_data[:release_date]
+  end
 end
