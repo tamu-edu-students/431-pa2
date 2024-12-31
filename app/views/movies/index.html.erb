@@ -4,13 +4,44 @@
 
 <h1>Movies</h1>
 
+
 <div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <%= link_to "Title #{params[:sort] == 'title' ? (params[:direction] == 'asc' ? '&#8593' : '&#8595') : ''}".html_safe,
+                      movies_path(sort: "title", direction: params[:direction] == "asc" ? "desc" : "asc"),
+                      class: "#{params[:sort] == 'title' ? (params[:direction] == 'asc' ? 'asc' : 'desc') : ''}" %>
+        </th>
+        <th>
+          <%= link_to "Rating #{params[:sort] == 'rating' ? (params[:direction] == 'asc' ? '&#8593' : '&#8595') : ''}".html_safe,
+                      movies_path(sort: "rating", direction: params[:direction] == "asc" ? "desc" : "asc"),
+                      class: "#{params[:sort] == 'rating' ? (params[:direction] == 'asc' ? 'asc' : 'desc') : ''}" %>
+        </th>
+        <th>
+          <%= link_to "Release Date #{params[:sort] == 'release_date' ? (params[:direction] == 'asc' ? '&#8593' : '&#8595') : ''}".html_safe,
+                      movies_path(sort: "release_date", direction: params[:direction] == "asc" ? "desc" : "asc"),
+                      class: "#{params[:sort] == 'release_date' ? (params[:direction] == 'asc' ? 'asc' : 'desc') : ''}" %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td><%= movie.rating %></td>
+          <td><%= movie.release_date.strftime('%Y-%m-%d') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" style="text-align: left;">
+          <%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]) %>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
 
-<%= link_to "New movie", new_movie_path %>
